@@ -1,0 +1,101 @@
+﻿@page
+@model Clinical.Pages.Admin.ViewTicketsModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "View Tickets";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary fw-bold mb-4">All Tickets</h2>
+
+    @if (Model.Tickets == null || !Model.Tickets.Any())
+    {
+        <div class="alert alert-info text-center">No tickets found.</div>
+    }
+    else
+    {
+        <table class="table table-hover shadow-sm border">
+            <thead class="table-primary text-center">
+                <tr>
+                    <th>Ticket ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Assigned To</th>
+                    <th>Created Date</th>
+                    <th style="width: 200px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ticket in Model.Tickets)
+                {
+                    <tr class="align-middle">
+                        <td>@ticket.TicketID</td>
+                        <td>@ticket.Title</td>
+                        <td>@ticket.Description</td>
+                        <td>@ticket.Category</td>
+                        <td>@ticket.Priority</td>
+
+                        <td>
+                            @if (ticket.Status == "Resolved")
+                            {
+                                <span class="badge bg-success">@ticket.Status</span>
+                            }
+                            else if (ticket.Status == "Assigned")
+                            {
+                                <span class="badge bg-warning text-dark">@ticket.Status</span>
+                            }
+                            else if (ticket.Status == "Closed")
+                            {
+                                <span class="badge bg-dark">@ticket.Status</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">@ticket.Status</span>
+                            }
+                    </td>
+
+                    <td>@ticket.AssignedTo</td>
+
+                    <td>
+                        @(ticket.CreatedDate.HasValue
+                                            ? ticket.CreatedDate.Value.ToString("dd-MM-yyyy")
+                                            : "—")
+                </td>
+
+                        <td class="text-center">
+
+                            <!-- 🔹 EDIT BUTTON (ADDED) -->
+                            <a asp-page="/Admin/EditTicket"
+                               asp-route-id="@ticket.TicketID"
+                               class="btn btn-sm btn-outline-warning me-1">
+                                Edit
+                            </a>
+
+                            <!-- 🔹 ASSIGN BUTTON -->
+                            <a asp-page="/Admin/AssignTicket"
+                               asp-route-id="@ticket.TicketID"
+                               class="btn btn-sm btn-outline-success me-1">
+                                Assign
+                            </a>
+
+                            <!-- 🔹 DELETE BUTTON -->
+                            <a asp-page="/Admin/DeleteTicket"
+                               asp-route-id="@ticket.TicketID"
+                               class="btn btn-sm btn-outline-danger">
+                                Delete
+                            </a>
+
+                        </td>
+                    </tr>
+                        }
+            </tbody>
+        </table>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

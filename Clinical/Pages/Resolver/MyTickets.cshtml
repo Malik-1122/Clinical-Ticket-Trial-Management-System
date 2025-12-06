@@ -1,0 +1,57 @@
+﻿@page
+@model Clinical.Pages.Resolver.MyTicketsModel
+@{
+    Layout = "_ResolverLayout";
+    ViewData["Title"] = "My Tickets";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary fw-bold mb-4">My Assigned Tickets</h2>
+
+    @if (Model.MyTickets == null || Model.MyTickets.Count == 0)
+    {
+        <div class="alert alert-info">No tickets assigned to you.</div>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped shadow">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Created Date</th>
+                    <th style="width: 180px;">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var ticket in Model.MyTickets)
+                {
+                    <tr>
+                        <td>@ticket.TicketID</td>
+                        <td>@ticket.Title</td>
+                        <td>@ticket.Status</td>
+                        <td>@ticket.Priority</td>
+                        <td>@ticket.CreatedDate.ToString("yyyy-MM-dd")</td>
+
+                        <td>
+                            <a asp-page="/Resolver/TicketDetails"
+                               asp-route-id="@ticket.TicketID"
+                               class="btn btn-primary btn-sm me-1">
+                                View
+                            </a>
+
+                            <a asp-page="/Resolver/AssignToReviewer"
+                               asp-route-id="@ticket.TicketID"
+                               class="btn btn-warning btn-sm">
+                                Assign to Reviewer
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

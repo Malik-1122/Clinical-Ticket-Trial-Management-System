@@ -1,0 +1,87 @@
+﻿@page
+@model Clinical.Pages.Admin.DashboardModel
+@{
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";  // ✅ use Admin layout
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container text-center">
+    <h2 class="text-primary fw-bold mb-5">Admin Dashboard</h2>
+
+    <div class="row justify-content-center g-4">
+        <!-- Total Tickets -->
+        <div class="col-md-3">
+            <div class="card dashboard-card shadow-lg border-0 rounded-4 bg-success text-white">
+                <div class="card-body py-5">
+                    <i class="bi bi-ticket-detailed fs-1 mb-3"></i>
+                    <h5>Total Tickets</h5>
+                    <h2 class="fw-bold mt-2">@Model.TotalTickets</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Created -->
+        <div class="col-md-3">
+            <div class="card dashboard-card shadow-lg border-0 rounded-4 bg-primary text-white">
+                <div class="card-body py-5">
+                    <i class="bi bi-pencil-square fs-1 mb-3"></i>
+                    <h5>Created</h5>
+                    <h2 class="fw-bold mt-2">@Model.CreatedTickets</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assigned -->
+        <div class="col-md-3">
+            <div class="card dashboard-card shadow-lg border-0 rounded-4 bg-warning text-dark">
+                <div class="card-body py-5">
+                    <i class="bi bi-person-check fs-1 mb-3"></i>
+                    <h5>Assigned</h5>
+                    <h2 class="fw-bold mt-2">@Model.AssignedTickets</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resolved -->
+        <div class="col-md-3">
+            <div class="card dashboard-card shadow-lg border-0 rounded-4 bg-info text-white">
+                <div class="card-body py-5">
+                    <i class="bi bi-check-circle fs-1 mb-3"></i>
+                    <h5>Resolved</h5>
+                    <h2 class="fw-bold mt-2">@Model.ResolvedTickets</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="mt-5 d-flex justify-content-center gap-3">
+        <a asp-page="/Admin/CreateTicket" class="btn btn-success btn-lg px-4 py-2 shadow-sm">
+            <i class="bi bi-plus-circle"></i> Create Ticket
+        </a>
+        <a asp-page="/Admin/ViewTickets" class="btn btn-primary btn-lg px-4 py-2 shadow-sm">
+            <i class="bi bi-list-ul"></i> View Tickets
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    <style>
+        .dashboard-card {
+            transition: all 0.3s ease;
+        }
+
+            .dashboard-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            }
+
+        h5 {
+            font-size: 1.2rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+    </style>
+}

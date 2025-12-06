@@ -1,0 +1,47 @@
+﻿@page "{id:int}"
+@model Clinical.Pages.Admin.EditTicketModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Edit Ticket";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary mb-4">Edit Ticket</h2>
+
+    <form method="post">
+        <input type="hidden" asp-for="Ticket.TicketID" />
+
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input asp-for="Ticket.Title" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea asp-for="Ticket.Description" class="form-control" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select asp-for="Ticket.Category" class="form-select" required>
+                <option value="">-- Select Category --</option>
+                <option>Safety</option>
+                <option>Data</option>
+                <option>Technical</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Priority</label>
+            <select asp-for="Ticket.Priority" class="form-select" required>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+                <option>Critical</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Ticket</button>
+        <a asp-page="/Admin/ViewTickets" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

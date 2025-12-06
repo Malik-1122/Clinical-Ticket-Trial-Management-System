@@ -1,0 +1,60 @@
+﻿@page
+@model Clinical.Pages.Resolver.DashboardModel
+@{
+    Layout = "_ResolverLayout";
+    ViewData["Title"] = "Resolver Dashboard";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4 text-primary fw-bold">Resolver Dashboard</h2>
+
+    <div class="text-center mb-4">
+        <a asp-page="/Resolver/MyTickets" class="btn btn-primary btn-lg px-4">
+            View My Assigned Tickets
+        </a>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Total Assigned Tickets -->
+        <div class="col-md-3">
+            <div class="card shadow-lg border-primary">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-primary fw-semibold">Assigned Tickets</h5>
+                    <h2 class="fw-bold">@Model.TotalAssignedTickets</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Open Tickets -->
+        <div class="col-md-3">
+            <div class="card shadow-lg border-warning">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-warning fw-semibold">Open Tickets</h5>
+                    <h2 class="fw-bold">@Model.OpenTickets</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resolved By Me -->
+        <div class="col-md-3">
+            <div class="card shadow-lg border-success">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-success fw-semibold">Resolved by You</h5>
+                    <h2 class="fw-bold">@Model.ResolvedByMe</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Resolved in System -->
+        <div class="col-md-3">
+            <div class="card shadow-lg border-secondary">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-secondary fw-semibold">Total Resolved</h5>
+                    <h2 class="fw-bold">@Model.TotalResolved</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

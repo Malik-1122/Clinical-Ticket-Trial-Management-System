@@ -1,0 +1,114 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home - CTTMS";
+}
+
+<!-- Hero Section -->
+<section class="hero-section d-flex align-items-center justify-content-center" style="background-color: #f8f9fa; padding: 40px 0;">
+    <div class="container text-center">
+        <div class="hero-box mx-auto text-white p-5 rounded-5 shadow-lg" style="background-color: #0d6efd; max-width: 900px;">
+            <h4 class="fw-semibold mb-3 text-white-75">Welcome to</h4>
+            <h1 class="fw-bold mb-4 display-5">Clinical Trial Ticket Management System (CTTMS)</h1>
+            <p class="mb-0 fs-5 text-white-75">
+                Manage, assign, and resolve issues efficiently during clinical trials — improving coordination and transparency.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Project Objectives Section -->
+<section id="objectives" class="py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="fw-bold text-primary mb-4">Project Objectives</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 p-4 h-100">
+                    <h5 class="fw-semibold text-primary">Simplify Ticket Handling</h5>
+                    <p class="text-muted small">
+                        Allow users to create and track issues quickly, ensuring no delay in resolving trial-related problems.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 p-4 h-100">
+                    <h5 class="fw-semibold text-primary">Improve Team Coordination</h5>
+                    <p class="text-muted small">
+                        Bridge the gap between Admin, Resolver, and Reviewer to ensure faster issue resolution and better communication.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 p-4 h-100">
+                    <h5 class="fw-semibold text-primary">Ensure Accountability</h5>
+                    <p class="text-muted small">
+                        Maintain audit logs and notifications for every ticket to ensure transparency throughout the process.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Key Features Section -->
+<section id="features" class="py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold text-primary mb-4">Key Features</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 p-4 h-100">
+                    <h5 class="fw-semibold text-primary">Role-Based Dashboards</h5>
+                    <p class="text-muted small">
+                        Custom dashboards for Admin, Resolver, and Reviewer to focus on their tasks efficiently.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 p-4 h-100">
+                    <h5 class="fw-semibold text-primary">Notification System</h5>
+                    <p class="text-muted small">
+                        Sends automatic alerts when tickets are created, updated, or resolved to keep all users informed.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 p-4 h-100">
+                    <h5 class="fw-semibold text-primary">Audit Logging</h5>
+                    <p class="text-muted small">
+                        Tracks every action taken on a ticket, ensuring accountability and traceability for all operations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Custom Styling -->
+<style>
+    .hero-box {
+        max-width: 1100px; /* Increased width for a more spacious look */
+        min-height: 400px; /* Taller height for visual balance */
+        background: linear-gradient(135deg, #0062ff, #0048d0); /* Beautiful blue gradient */
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        border-radius: 30px; /* Smooth round corners */
+        transition: all 0.4s ease;
+    }
+
+        .hero-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+        }
+
+    .hero-section {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    .text-white-75 {
+        color: rgba(255, 255, 255, 0.85);
+    }
+</style>

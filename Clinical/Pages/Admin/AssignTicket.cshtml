@@ -1,0 +1,68 @@
+﻿@page "{id:int}"
+@model Clinical.Pages.Admin.AssignTicketModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Assign Ticket to Resolver";
+}
+
+<h2 class="text-primary mb-4 fw-bold">Assign Ticket to Resolver</h2>
+
+<!-- TICKET DETAILS -->
+<div class="card shadow-lg p-4 mb-4">
+    <h4 class="text-secondary mb-3">Ticket Details</h4>
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th width="200">Ticket ID</th>
+            <td>@Model.Ticket.TicketID</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>@Model.Ticket.Title</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>@Model.Ticket.Description</td>
+        </tr>
+        <tr>
+            <th>Category</th>
+            <td>@(Model.Ticket.Category ?? "Not Assigned")</td>
+        </tr>
+        <tr>
+            <th>Priority</th>
+            <td>@(Model.Ticket.Priority ?? "Not Assigned")</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>@Model.Ticket.Status</td>
+        </tr>
+        <tr>
+            <th>Created Date</th>
+            <td>@Model.Ticket.CreatedDate?.ToString("yyyy-MM-dd HH:mm")</td>
+        </tr>
+    </table>
+</div>
+
+<!-- RESOLVER SELECTION -->
+<div class="card shadow-lg p-4">
+    <form method="post">
+
+        <input type="hidden" asp-for="Ticket.TicketID" />
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Select Resolver</label>
+
+            <select asp-for="SelectedResolverID" class="form-select" required>
+                <option value="">-- Resolver --</option>
+                @foreach (var user in Model.Resolvers)
+                {
+                    <option value="@user.UserID">@user.Name</option>
+                }
+            </select>
+
+        </div>
+
+        <button type="submit" class="btn btn-success">Assign</button>
+        <a asp-page="/Admin/ViewTickets" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

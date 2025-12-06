@@ -1,0 +1,19 @@
+﻿@page "{id:int}"
+@model Clinical.Pages.Reviewer.CloseTicketModel
+@{
+    Layout = "_ReviewerLayout";
+    ViewData["Title"] = "Close Ticket";
+}
+
+<div class="container mt-4">
+    <h3 class="text-danger mb-4">Close Ticket #@Model.TicketID</h3>
+
+    <form method="post">
+        <div class="alert alert-warning">
+            Are you sure you want to <strong>close</strong> this ticket?
+        </div>
+
+        <button type="submit" class="btn btn-danger">Yes, Close Ticket</button>
+        <a asp-page="/Reviewer/MyTickets" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>

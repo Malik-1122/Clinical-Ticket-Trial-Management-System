@@ -1,0 +1,45 @@
+﻿@page
+@model Clinical.Pages.Reviewer.DashboardModel
+@{
+    Layout = "_ReviewerLayout";
+    ViewData["Title"] = "Reviewer Dashboard";
+}
+
+<div class="container">
+    <div class="text-center mb-4">
+        <h1 class="text-primary">Reviewer Dashboard</h1>
+    </div>
+
+    <div class="row g-4 justify-content-center mb-3">
+        <div class="col-md-3">
+            <div class="card border-primary shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-primary">Assigned Tickets</h5>
+                    <h2 class="display-5">@Model.AssignedCount</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-warning shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-warning">Reviewed Tickets</h5>
+                    <h2 class="display-5">@Model.ReviewedCount</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-success shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-success">Closed Tickets</h5>
+                    <h2 class="display-5">@Model.ClosedCount</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <a asp-page="/Reviewer/MyTickets" class="btn btn-primary">View My Tickets</a>
+    </div>
+</div>

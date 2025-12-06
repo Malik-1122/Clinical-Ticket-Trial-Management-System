@@ -1,0 +1,59 @@
+﻿@page
+@model Clinical.Pages.Admin.CreateTicketModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Create Ticket";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg mx-auto" style="max-width: 700px;">
+        <div class="card-body">
+            <h3 class="text-center text-primary mb-4">Create New Ticket</h3>
+
+            <form method="post">
+                @Html.AntiForgeryToken()
+
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Ticket.Title" class="form-label"></label>
+                    <input asp-for="Ticket.Title" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Ticket.Description" class="form-label"></label>
+                    <textarea asp-for="Ticket.Description" class="form-control"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Ticket.CategoryID" class="form-label">Category</label>
+                    <select asp-for="Ticket.CategoryID" class="form-select">
+                        <option value="">-- Select Category --</option>
+                        <option value="5">Safety</option>
+                        <option value="6">Data</option>
+                        <option value="7">Technical</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Ticket.PriorityID" class="form-label">Priority</label>
+                    <select asp-for="Ticket.PriorityID" class="form-select">
+                        <option value="">-- Select Priority --</option>
+                        <option value="1">Low</option>
+                        <option value="2">Medium</option>
+                        <option value="3">High</option>
+                    </select>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success px-4">Create Ticket</button>
+                    <a asp-page="/Admin/ViewTickets" class="btn btn-secondary ms-2 px-4">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

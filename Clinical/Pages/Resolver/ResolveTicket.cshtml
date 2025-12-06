@@ -1,0 +1,24 @@
+﻿@page "{id:int}"
+@model Clinical.Pages.Resolver.ResolveTicketModel
+@{
+    Layout = "_ResolverLayout";
+    ViewData["Title"] = "Resolve Ticket";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary fw-bold mb-3">Resolve Ticket</h2>
+
+    <div class="card shadow p-4">
+        <h4>@Model.Ticket.Title</h4>
+
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label">Resolution Notes</label>
+                <textarea asp-for="ResolutionNotes" class="form-control" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success">Resolve Ticket</button>
+            <a asp-page="/Resolver/MyTickets" class="btn btn-secondary ms-2">Cancel</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+﻿@*
+  _ReviewerLayout.cshtml
+  Layout for reviewer pages. Notifications removed from sidebar.
+*@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Reviewer Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" />
+    <style>
+        body {
+            background: #f5f7fa;
+        }
+
+        .sidebar {
+            width: 220px;
+            min-height: 100vh;
+            background: #222;
+            color: #fff;
+            position: fixed;
+        }
+
+        .content {
+            margin-left: 220px;
+            padding: 30px;
+        }
+
+        .sidebar .nav-link {
+            color: #ddd;
+        }
+
+            .sidebar .nav-link.active, .sidebar .nav-link:hover {
+                color: #fff;
+                background: rgba(255,255,255,0.03);
+            }
+
+        .topbar {
+            height: 60px;
+            background: #1070ff;
+            color: #fff;
+            padding: 12px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex">
+        <div class="sidebar p-3">
+            <h5 class="text-white mb-4">Reviewer Panel</h5>
+
+            <ul class="nav flex-column">
+                <li class="nav-item mb-1">
+                    <a class="nav-link" asp-page="/Reviewer/Dashboard"><i class="fa fa-home me-2"></i> Dashboard</a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a class="nav-link" asp-page="/Reviewer/MyTickets"><i class="fa fa-list me-2"></i> My Reviews</a>
+                </li>
+                <li class="nav-item mt-3">
+                    <a class="nav-link" asp-page="/Logout"><i class="fa fa-sign-out-alt me-2"></i> Logout</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="flex-grow-1">
+            <div class="topbar d-flex align-items-center">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="mb-0 text-white">@ViewData["Title"]</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

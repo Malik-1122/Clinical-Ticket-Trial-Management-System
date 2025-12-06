@@ -1,0 +1,69 @@
+﻿@page
+@model Clinical.Pages.Reviewer.MyTicketsModel
+@{
+    Layout = "_ReviewerLayout";
+    ViewData["Title"] = "My Tickets";
+}
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold">My Assigned Tickets</h2>
+    </div>
+
+    @if (Model.Tickets == null || Model.Tickets.Count == 0)
+    {
+        <div class="alert alert-info">No tickets assigned to you.</div>
+    }
+    else
+    {
+        <table class="table table-hover table-bordered shadow-sm">
+            <thead class="table-light">
+                <tr>
+                    <th>TicketID</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Created Date</th>
+                    <th style="width:180px;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var t in Model.Tickets)
+                {
+                    <tr>
+                        <td>@t.TicketID</td>
+                        <td>@t.Title</td>
+                        <td>@t.Category</td>
+                        <td>@t.Priority</td>
+
+                        <td>
+                            <span class="badge bg-info text-dark">@t.Status</span>
+                        </td>
+
+                        <td>@t.CreatedDate.ToString("yyyy-MM-dd")</td>
+
+                        <td>
+                            <!-- Review Button -->
+                            <a asp-page="/Reviewer/ReviewTicket"
+                               asp-route-id="@t.TicketID"
+                               class="btn btn-sm btn-primary me-2">
+                                Review
+                            </a>
+
+                            <!-- Close Ticket Button -->
+                            @if (t.Status != "Closed")
+                            {
+                                <a asp-page="/Reviewer/CloseTicket"
+                                   asp-route-id="@t.TicketID"
+                                   class="btn btn-sm btn-danger">
+                                    Close
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

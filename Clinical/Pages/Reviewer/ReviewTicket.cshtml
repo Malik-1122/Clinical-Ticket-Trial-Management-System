@@ -1,0 +1,61 @@
+﻿@page "{id:int}"
+@model Clinical.Pages.Reviewer.ReviewTicketModel
+@{
+    Layout = "_ReviewerLayout";
+    ViewData["Title"] = "Review Ticket";
+}
+
+<div class="container">
+    <div class="card shadow-sm p-4">
+        <h3 class="mb-3">Review Ticket #@Model.Ticket.TicketID</h3>
+
+        <div class="mb-3">
+            <label class="form-label"><strong>Title</strong></label>
+            <p>@Model.Ticket.Title</p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><strong>Description</strong></label>
+            <p>@Model.Ticket.Description</p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><strong>Category</strong></label>
+            <p>@Model.Ticket.Category</p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><strong>Priority</strong></label>
+            <p>@Model.Ticket.Priority</p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><strong>Current Status</strong></label>
+            <p><span class="badge bg-info text-dark">@Model.Ticket.Status</span></p>
+        </div>
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Review Comment</label>
+                <textarea name="ReviewComment" class="form-control" rows="5" required></textarea>
+            </div>
+
+            @* <div class="mb-3">
+                <label class="form-label">Review Attachment (optional)</label>
+                <input type="file" name="ReviewAttachment" class="form-control" />
+            </div> *@
+
+            <div class="mb-3">
+                <label class="form-label">Update Status</label>
+                <select name="Status" class="form-select" required>
+                    <option value="Reviewed">Reviewed</option>
+                    <option value="Need More Info">Need More Info</option>
+                    <option value="Closed">Closed</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+            <a asp-page="/Reviewer/MyTickets" class="btn btn-secondary ms-2">Back</a>
+        </form>
+    </div>
+</div>

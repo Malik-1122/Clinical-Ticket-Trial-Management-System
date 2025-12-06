@@ -1,0 +1,59 @@
+﻿@page "{id:int}"
+@model Clinical.Pages.Resolver.TicketDetailsModel
+@{
+    Layout = "_ResolverLayout";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary fw-bold">Ticket Details</h2>
+
+    <div class="card shadow p-4 mt-3">
+
+        <h4>@Model.Ticket.Title</h4>
+        <p>@Model.Ticket.Description</p>
+
+        <p><strong>Status:</strong> @Model.Ticket.Status</p>
+        <p><strong>Priority:</strong> @Model.Ticket.Priority</p>
+        <p><strong>Category:</strong> @Model.CategoryName</p>
+
+        <hr />
+
+        <!-- Officer Role Selection -->
+        <form method="post" asp-page-handler="SelectOfficer">
+            <label class="fw-bold">Select Officer Role</label>
+            <select asp-for="SelectedOfficerRole" class="form-select mb-3">
+                <option value="">-- Select Officer --</option>
+                <option value="Data Officer">Data Officer</option>
+                <option value="Technical Officer">Technical Officer</option>
+                <option value="Safety Officer">Safety Officer</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary w-100">
+                Save Officer Role
+            </button>
+        </form>
+
+        <hr />
+
+        <!-- Resolve button only if officer role is selected -->
+        @if (!string.IsNullOrEmpty(Model.Ticket.OfficerRole))
+        {
+            <form method="post" asp-page-handler="Resolve">
+                <div class="mb-3 mt-3">
+                    <label class="fw-bold">Resolution Notes</label>
+                    <textarea asp-for="ResolutionNotes" class="form-control"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">Resolve Ticket</button>
+            </form>
+        }
+        else
+        {
+            <p class="text-danger fw-bold mt-3">
+                Please select officer role before resolving the ticket.
+            </p>
+        }
+
+        <a asp-page="/Resolver/MyTickets" class="btn btn-secondary w-100 mt-3">Back</a>
+    </div>
+</div>

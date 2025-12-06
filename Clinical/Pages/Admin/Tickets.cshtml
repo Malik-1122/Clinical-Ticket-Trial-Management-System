@@ -1,0 +1,46 @@
+﻿@page
+@model Clinical.Pages.Admin.TicketsModel
+@{
+    ViewData["Title"] = "View Tickets";
+}
+
+<div class="container mt-5 pt-5">
+    <h2 class="text-center text-primary fw-bold mb-4">All Tickets</h2>
+
+    <table class="table table-hover shadow-sm bg-white rounded">
+        <thead class="table-primary">
+            <tr>
+                <th>Ticket ID</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Created Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in Model.Ticket)
+            {
+                <tr>
+                    <td>@t.TicketID</td>
+                    <td>@t.Title</td>
+                    <td>@t.Category</td>
+                    <td>@t.Priority</td>
+                    <td>
+                        <span class="badge bg-@(
+                              t.Status == "Resolved" ? "success" :
+                              t.Status == "Assigned" ? "warning text-dark" :
+                              "primary"
+                                                )">
+                        @t.Status
+                    </span>
+                </td>
+
+                    <td>
+                        @(t.CreatedDate.HasValue? t.CreatedDate.Value.ToString("dd-MMM-yyyy") : "—")
+                    </td>
+                </tr>
+                        }
+        </tbody>
+    </table>
+</div>

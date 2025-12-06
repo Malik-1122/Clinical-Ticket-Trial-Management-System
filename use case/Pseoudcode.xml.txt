@@ -1,0 +1,49 @@
+BEGIN
+
+  DISPLAY "Welcome to CTTMS"
+
+  // Step 1: User Login
+  PROMPT user for Email and Password
+  VALIDATE credentials
+
+  IF credentials are INVALID THEN
+      DISPLAY "Invalid login. Try again."
+      GOTO Step 1
+  END IF
+
+  // Step 2: Create Ticket
+  DISPLAY "Enter Ticket Details"
+  PROMPT for Title, Description, Category, Priority
+  CREATE new Ticket with Status = "Open"
+  STORE ticket in database
+
+  // Step 3: Admin Assigns Ticket
+  ADMIN selects ticket
+  ASSIGN ticket to a User (AssignedTo)
+  UPDATE ticket Status = "Assigned"
+
+  // Step 4: Staff Updates Progress
+  WHILE ticket Status != "Resolved"
+      Staff updates ticket progress
+      UPDATE ticket Status (e.g., "In Progress")
+  END WHILE
+
+  // Step 5: Resolve Ticket
+  IF issue is fixed THEN
+      UPDATE ticket Status = "Resolved"
+  END IF
+
+  // Step 6: Close Ticket
+  ADMIN reviews resolution
+  IF resolution is acceptable THEN
+      UPDATE ticket Status = "Closed"
+      SET ClosedDate = CurrentDate
+  END IF
+
+  // Step 7: Generate Logs and Notifications
+  INSERT action details into AuditLog
+  SEND notification to relevant Users
+
+  DISPLAY "Ticket Lifecycle Completed"
+
+END
